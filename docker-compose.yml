@@ -1,0 +1,19 @@
+services:
+  streamlit:
+    build:
+      context: ./streamlit
+    networks:
+      shared-nw:
+    ports:
+      - 8501:8501
+    command: streamlit run app.py
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - 80:80
+    networks:
+      shared-nw:
+networks:
+  shared-nw:
+    driver: bridge
